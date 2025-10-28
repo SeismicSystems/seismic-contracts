@@ -9,7 +9,7 @@ import "seismic-std-lib/utils/EIP7702Utils.sol";
 import "./interfaces/IShieldedDelegationAccount.sol";
 
 /// @title ShieldedDelegationAccount
-/// @author ameya-deshmukh
+/// @author ameya-deshmukh and cdrappi
 /// @notice Experimental EIP-7702 delegation contract which supports session keys
 /// @dev WARNING: THIS CONTRACT IS AN EXPERIMENT AND HAS NOT BEEN AUDITED
 /// @dev Credits: Inspired by https://github.com/ithacaxyz/exp-0001 by jxom (https://github.com/jxom)
