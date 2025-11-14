@@ -7,3 +7,4 @@ remappings = [
     "solady/=lib/solady/src/",
     "seismic-std-lib/=src/seismic-std-lib/"
 ]
+via_ir = true
