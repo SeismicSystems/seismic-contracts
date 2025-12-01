@@ -14,21 +14,11 @@ interface IDirectory {
 
     function keyHash(address to) external view returns (bytes32);
 
-    function encrypt(
-        address to,
-        bytes memory _plaintext
-    ) external returns (bytes memory);
+    function encrypt(address to, bytes memory _plaintext) external returns (bytes memory);
 
-    function decrypt(
-        bytes memory _encryptedData
-    ) external view returns (bytes memory);
+    function decrypt(bytes memory _encryptedData) external view returns (bytes memory);
 
-    function packEncryptedData(
-        bytes memory _ciphertext,
-        uint96 _nonce
-    ) external pure returns (bytes memory);
+    function packEncryptedData(bytes memory _ciphertext, uint96 _nonce) external pure returns (bytes memory);
 
-    function parseEncryptedData(
-        bytes memory _encryptedData
-    ) external pure returns (bytes memory ct, uint96 nce);
+    function parseEncryptedData(bytes memory _encryptedData) external pure returns (bytes memory ct, uint96 nce);
 }

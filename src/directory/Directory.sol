@@ -27,40 +27,26 @@ contract Directory is IDirectory {
         return keccak256(abi.encodePacked(keys[to]));
     }
 
-    function encrypt(
-        address to,
-        bytes memory _plaintext
-    ) public returns (bytes memory) {
+    function encrypt(address to, bytes memory _plaintext) public returns (bytes memory) {
         suint256 key = keys[to];
 
-        bytes memory ciphertext = AesLib.AES256GCMEncrypt(
-            key,
-            nonce,
-            _plaintext
-        );
+        bytes memory ciphertext = AesLib.AES256GCMEncrypt(key, nonce, _plaintext);
         bytes memory encryptedData = packEncryptedData(ciphertext, nonce);
 
         nonce++;
         return encryptedData;
     }
 
-    function decrypt(
-        bytes memory _encryptedData
-    ) public view returns (bytes memory) {
+    function decrypt(bytes memory _encryptedData) public view returns (bytes memory) {
         (bytes memory ct, uint96 nce) = parseEncryptedData(_encryptedData);
         return AesLib.AES256GCMDecrypt(keys[msg.sender], nce, ct);
     }
 
-    function packEncryptedData(
-        bytes memory _ciphertext,
-        uint96 _nonce
-    ) public pure returns (bytes memory) {
+    function packEncryptedData(bytes memory _ciphertext, uint96 _nonce) public pure returns (bytes memory) {
         return abi.encodePacked(_ciphertext, _nonce);
     }
 
-    function parseEncryptedData(
-        bytes memory _encryptedData
-    ) public pure returns (bytes memory ct, uint96 nce) {
+    function parseEncryptedData(bytes memory _encryptedData) public pure returns (bytes memory ct, uint96 nce) {
         uint256 nonceStart = _encryptedData.length - 12;
 
         ct = new bytes(nonceStart);
