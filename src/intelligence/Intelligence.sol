@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
 
-import {AesLib} from "./AesLib.sol";
+import {AesLib} from "../../lib/AesLib.sol";
 import {IIntelligence} from "./IIntelligence.sol";
 
 contract Intelligence is IIntelligence {
