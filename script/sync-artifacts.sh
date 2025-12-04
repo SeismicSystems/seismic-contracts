@@ -42,7 +42,7 @@ while IFS= read -r contract_name || [ -n "$contract_name" ]; do
             cp "$src" "$dst"
             echo "${contract_name}.json"
         fi
-        ((synced++))
+        synced=$((synced + 1))
     else
         echo "  ${contract_name}.json not found in out/"
         exit 1
