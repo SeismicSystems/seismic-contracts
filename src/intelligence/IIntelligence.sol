@@ -1,19 +1,26 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
 
+import {IDirectory} from "./IDirectory.sol";
+
 interface IIntelligence {
-    event OwnershipTransferred(address indexed user, address indexed newOwner);
+    event OwnershipTransferred(address indexed owner);
+    event ProviderAdded(address indexed provider);
+    event ProviderRemoved(address indexed provider);
 
+    function DIRECTORY_ADDRESS() external view returns (address);
+    function directory() external view returns (IDirectory);
+    function INITIAL_OWNER() external view returns (address);
     function owner() external view returns (address);
-    function keyHashes(uint256) external view returns (bytes32);
-    function nonce() external view returns (uint96);
+    function providers(uint256) external view returns (address);
 
-    function numKeys() external view returns (uint256);
+    function numProviders() external view returns (uint256);
 
-    function encryptIdx(uint256 _keyIdx, bytes memory _plaintext) external returns (bytes memory);
-    function decrypt(suint256 key, bytes memory _encryptedData) external view returns (bytes memory);
-    function encrypt(bytes memory _plaintext) external returns (bytes32[] memory, bytes[] memory);
+    function encryptToProviders(bytes memory _plaintext) external returns (bytes32[] memory, bytes[] memory);
 
-    function addKey(suint256 _key) external;
-    function removeKey(suint256 _key) external;
+    function addProvider(address _provider) external;
+
+    function removeProvider(address _provider) external;
+
+    function transferOwnership(address newOwner) external;
 }
