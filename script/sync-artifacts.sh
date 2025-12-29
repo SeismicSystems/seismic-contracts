@@ -19,7 +19,7 @@ else
 fi
 
 echo "Building contracts..."
-sforge build
+sforge build --libraries lib/AesLib.sol:AesLib:0x1000000000000000000000000000000000000003
 
 echo "Syncing genesis contracts..."
 mkdir -p artifacts
@@ -42,7 +42,7 @@ while IFS= read -r contract_name || [ -n "$contract_name" ]; do
             cp "$src" "$dst"
             echo "${contract_name}.json"
         fi
-        ((synced++))
+        synced=$((synced + 1))
     else
         echo "  ${contract_name}.json not found in out/"
         exit 1
