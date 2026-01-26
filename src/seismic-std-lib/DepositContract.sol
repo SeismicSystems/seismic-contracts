@@ -117,6 +117,13 @@ contract DepositContract is IDepositContract, ERC165 {
         require(node_signature.length == 64, "DepositContract: invalid node_signature length");
         require(consensus_signature.length == 96, "DepositContract: invalid consensus_signature length");
 
+        // Validate ETH1 withdrawal credentials format: 0x01 prefix + 11 zero bytes + 20-byte address
+        require(withdrawal_credentials[0] == 0x01, "DepositContract: invalid withdrawal_credentials prefix");
+        require(
+            bytes11(withdrawal_credentials[1:12]) == bytes11(0),
+            "DepositContract: invalid withdrawal_credentials padding"
+        );
+
         // Check deposit amount
         require(msg.value >= 1 ether, "DepositContract: deposit value too low");
         require(msg.value % 1 gwei == 0, "DepositContract: deposit value not multiple of gwei");
