@@ -5,7 +5,7 @@ import {IDirectory} from "../directory/IDirectory.sol";
 import {IIntelligence} from "./IIntelligence.sol";
 
 contract Intelligence is IIntelligence {
-    address public constant DIRECTORY_ADDRESS = address(0x1000000000000000000000000000000000000004);
+    address public constant DIRECTORY_ADDRESS = address(0xfd323feA82e93DF2aB57625b8980732aBBf5e4a7); // workaround address for Ankr testing
     IDirectory public constant directory = IDirectory(DIRECTORY_ADDRESS);
 
     address public constant INITIAL_OWNER = address(0x6346d64A3f31774283b72926B75Ffda9662266ce);
